@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>Socket.IO chat</title>
+    <link rel="stylesheet" type="text/css" href="./desain.css" />
+</head>
+
+<body>
+    <ul id="messages"></ul>
+ 
+    <form action = "localhost:3000" method = "POST">
+         First Name: <input type = "text" data = "first_name"> 
+         Last Name: <input type = "text" data = "last_name">
+         <button>Send</button>
+    </form>
+     <label class="container">One
+        <input type="checkbox" checked="checked">
+        <span class="checkmark"></span>
+        </label>
+      <label class="container">Two
+        <input type="checkbox">
+        <span class="checkmark"></span>
+      </label>
+      
+      <label class="container">Three
+        <input type="checkbox">
+        <span class="checkmark"></span>
+      </label>
+      
+      <label class="container">Four
+        <input type="checkbox">
+        <span class="checkmark"></span>
+      </label>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+      <script>
+           $(function () {
+                var socket = io();
+               $('form').submit(function (e) {
+                 e.preventDefault(); // prevent page loadings
+                 socket.emit('chat message', $('#first_name')
+              .val()); // emit itu mengirim, yaitu mengirim ke room 'chat message'|| #m itu adalah id dan val itu adalah value jadi mengirim value yang ada di #m atau class m
+                  $('#first_name').val('');
+                    return false;
+              });
+          });
+     </script>
+
+    </body>
+
+</html>
